@@ -1,0 +1,214 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+/* Background */
+.background {
+  height: 100vh;
+  background-image: url("/bg.jpg");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Hide real cursor ONLY when blob mode is ON */
+.custom-cursor {
+  cursor: none;
+}
+
+/* ===== JELLY BLOB CURSOR ===== */
+.blob {
+  position: fixed;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+
+  backdrop-filter: blur(14px);
+  background: rgba(255,255,255,0.18);
+  border: 1px solid rgba(255,255,255,0.25);
+  filter: blur(0.6px);
+
+  box-shadow: 0 0 25px rgba(255,255,255,0.25);
+
+  animation: morph 8s infinite ease-in-out;
+}
+
+/* Front blob (sticks to cursor) */
+.blob1 {
+  width: 95px;
+  height: 70px;
+  transition: none;
+}
+
+/* Middle trail */
+.blob2 {
+  width: 65px;
+  height: 50px;
+  transition: all 0.03s linear;
+  opacity: 0.6;
+}
+
+/* Tail */
+.blob3 {
+  width: 45px;
+  height: 35px;
+  transition: all 0.06s linear;
+  opacity: 0.4;
+}
+
+/* Organic morph animation */
+@keyframes morph {
+  0% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+  20% {
+    border-radius: 30% 70% 70% 30% / 50% 60% 40% 50%;
+  }
+  40% {
+    border-radius: 70% 30% 50% 50% / 30% 70% 30% 70%;
+  }
+  60% {
+    border-radius: 50% 50% 30% 70% / 70% 30% 70% 30%;
+  }
+  80% {
+    border-radius: 30% 70% 60% 40% / 40% 50% 50% 60%;
+  }
+  100% {
+    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  }
+}
+
+/* ===== GLASS TODO CARD ===== */
+.glass {
+  width: 350px;
+  padding: 25px;
+  border-radius: 20px;
+
+  backdrop-filter: blur(8px);
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+  color: white;
+
+  position: relative;
+  overflow: hidden;
+}
+
+/* Soft inner glow following cursor */
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+
+  background: radial-gradient(
+    circle 180px at var(--x) var(--y),
+    rgba(255,255,255,0.45),
+    rgba(255,255,255,0.2) 40%,
+    transparent 70%
+  );
+
+  pointer-events: none;
+}
+
+/* Title */
+h1 {
+  text-align: center;
+  margin-bottom: 18px;
+
+  font-family: "Birthstone", cursive;
+  font-size: 64px;
+  font-weight: normal;
+  letter-spacing: 5px;
+
+  color: white;
+  text-shadow: 0 4px 20px rgba(0,0,0,0.4);
+}
+
+/* Input row */
+.inputBox {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 10px;
+  border: none;
+}
+
+/* Buttons */
+button {
+  padding: 8px 14px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+
+  background: rgba(0,0,0,0.6);
+  color: white;
+  font-weight: 600;
+
+  transition: all 0.25s ease;
+}
+
+button:hover {
+  background: #ff7a7a;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 6px 15px rgba(255,122,198,0.4);
+}
+
+.buttons {
+  display: flex;
+  gap: 8px;
+}
+
+.buttons button:first-child:hover {
+  background: #4CAF50;
+  box-shadow: 0 6px 15px rgba(76,175,80,0.5);
+}
+
+/* List */
+ul {
+  list-style: none;
+}
+
+li {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  padding: 6px;
+}
+
+/* Completed task */
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+/* ===== SIDE TOGGLE BUTTON ===== */
+.cursor-toggle {
+  position: fixed;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+
+  padding: 8px 12px;
+  font-size: 12px;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255,255,255,0.3);
+
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(10px);
+  color: white;
+
+  z-index: 9999;
+}
+
+
